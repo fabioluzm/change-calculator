@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Change Calculator</title>
+
+	<style>
+		body {
+			text-align: center;
+			background: #222;
+			color: #ddd;
+		}
+
+		h1 {
+			font-size: 30px;
+			font-weight: 500;
+			font-family: sans-serif;
+			margin: 15px 0 10px 0;
+		}
+
+		button {
+			background: green;
+			border: none;
+			color: white;
+			padding: 15px 20px;
+			margin-top: 25px;
+		}
+
+		table {
+			margin: 20px auto;
+			display: none;
+		}
+
+		th {
+			width: 150px;
+			padding: 15px 0;
+			background: black;
+			color: #ddd;
+			border: 1px solid black;
+		}
+		/* th:nth-of-type(1) {
+			border-right-color: #ddd;
+		} */
+
+		td {
+			width: 150px;
+			background: green;
+			border: 1px solid black;
+			text-align: center;
+			vertical-align: middle;
+			padding: 10px 0;
+		}
+	</style>
+</head>
+
+<body>
+	<h1>Change Calculator</h1>
+	<button onclick="change();">Make Change</button>
+	<br>
+	<br>
+	<table id="table">
+		<thead>
+			<tr>
+				<th id="bills"></th>
+				<th id="coins"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td id="type_bills"></td>
+				<td id="type_coins"></td>
+			</tr>
+		</tbody>
+	</table>
+		
+	<div id="change"></div>
+
+	<script>
+		function change ()
+		{
+			var euros;
+			
+			do
+			{
+				euros = prompt("Change: ");
+			}
+			while (euros <= 0 || isNaN(euros) || euros == " ");
+
+			document.getElementById("change").innerHTML = "Change: €" + euros;
+
+			var cents = Math.round(euros * 100);
+			
+			var e500 = 0;
+			var e200 = 0;
+			var e100 = 0;
+			var e50 = 0;
+			var e20 = 0;
+			var e10 = 0;
+			var e5 = 0;
+			var e2 = 0;
+			var e1 = 0;
+			var c50 = 0;
+			var c20 = 0;
+			var c10 = 0;
+			var c5 = 0;
+			var c2 = 0;
+			var c1 = 0;
+
+			while (cents >= 50000)
+			{
+				e500 = parseInt(cents / 50000);
+				cents = cents % 50000;
+			}
+			
+			while (cents >= 20000)
+			{
+				e200 = parseInt(cents / 20000);
+				cents = cents % 20000;
+			}
+			
+			while (cents >= 10000)
+			{
+				e100 = parseInt(cents / 10000);
+				cents = cents % 10000;
+			}
+			
+			while (cents >= 5000)
+			{
+				e50 = parseInt(cents / 5000);
+				cents = cents % 5000;
+			}
+
+			while (cents >= 2000)
+			{
+				e20 = parseInt(cents / 2000);
+				cents = cents % 2000;
+			}
+
+			while (cents >= 1000)
+			{
+				e10 = parseInt(cents / 1000);
+				cents = cents % 1000;
+			}
+			
+			while (cents >= 500)
+			{
+				e5 = parseInt(cents / 500);
+				cents = cents % 500;
+			}
+			
+			while (cents >= 200)
+			{
+				e2 = parseInt(cents / 200);
+				cents = cents % 200;
+			}
+			
+			while (cents >= 100)
+			{
+				e1 = parseInt(cents / 100);
+				cents = cents % 100;
+			}
+			
+			while (cents >= 50)
+			{
+				c50 = parseInt(cents / 50);
+				cents = cents % 50;
+			}
+
+			while (cents >= 20)
+			{
+				c20 = parseInt(cents / 20);
+				cents = cents % 20;
+			}
+
+			while (cents >= 10)
+			{
+				c10 = parseInt(cents / 10);
+				cents = cents % 10;
+			}
+
+			while (cents >= 5)
+			{
+				c5 = parseInt(cents / 5);
+				cents = cents % 5;
+			}
+
+			while (cents >= 2)
+			{
+				c2 = parseInt(cents / 2);
+				cents = cents % 2;
+			}
+
+			while (cents >= 1)
+			{
+				c1 = parseInt(cents / 1);
+				cents = cents % 1;
+			}
+
+			var bills = e500 + e200 + e100 + e50 + e20 + e10 + e5;
+			
+			var coins = e2 + e1 + c50 + c20 + c10 + c5 + c2 + c1;
+
+			document.getElementById("bills").innerHTML = "Bills: " + bills;
+			
+			document.getElementById("coins").innerHTML = "Coins: " + coins;
+			
+			document.getElementById("table").style.display="table";
+			
+			document.getElementById("type_bills").innerHTML = "€500: " + e500 + "<br>€200: " + e200 + "<br>€100: " + e100 + "<br>€50: " + e50 + "<br>€20: " + e20 + "<br>€10: " + e10 + "<br>€5: " + e5;
+			
+			document.getElementById("type_coins").innerHTML = "€2: " + e2 + "<br>€1: " + e1 + "<br>€0.50: " + c50 + "<br>€0.20: " + c20 + "<br>€0.10: " + c10 + "<br>€0.05: " + c5 + "<br>€0.02: " + c2 + "<br>€0.01: " + c1;
+		}
+	</script>
+</body>
+
+</html>
