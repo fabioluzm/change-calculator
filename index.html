@@ -41,9 +41,6 @@
 			color: #ddd;
 			border: 1px solid black;
 		}
-		/* th:nth-of-type(1) {
-			border-right-color: #ddd;
-		} */
 
 		td {
 			width: 150px;
@@ -86,6 +83,10 @@
 			do
 			{
 				euros = prompt("Change in euros: ");
+				if (euros == null)
+				{
+					return;
+				}
 			}
 			while (euros <= 0 || isNaN(euros) || euros == " ");
 
